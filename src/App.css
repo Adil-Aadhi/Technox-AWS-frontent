@@ -1,0 +1,154 @@
+#root {
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+body{
+  margin: 0;
+  overflow-x: hidden;
+  max-width: 100%;
+  /* scrollbar-width:none; */
+}
+/* Base icon styles with transition */
+.Toastify__toast-icon svg {
+  transition: fill 0.3s ease;
+  will-change: transform, opacity; /* Optimize for animations */
+}
+
+/* Success icon - animated entry only */
+.Toastify__toast--success .Toastify__toast-icon {
+  animation: iconEntry 0.6s ease-out;
+}
+
+/* Error/Warning/Info icons - subtle continuous pulse */
+.Toastify__toast--error .Toastify__toast-icon,
+.Toastify__toast--warning .Toastify__toast-icon,
+.Toastify__toast--info .Toastify__toast-icon {
+  animation: subtlePulse 4s infinite 0.6s; /* Starts after entry */
+}
+
+/* Entry animation */
+@keyframes iconEntry {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Very subtle pulse animation */
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* Icon colors */
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: #48bb78;
+}
+
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: #f56565;
+}
+
+.Toastify__toast--warning .Toastify__toast-icon svg {
+  fill: #ed8936;
+}
+
+.Toastify__toast--info .Toastify__toast-icon svg {
+  fill: #4299e1;
+}
+
+/* Ensure animations complete before toast exits */
+.Toastify__toast {
+  --animate-duration: 0.6s;
+}
+
+.Toastify__toast-body {
+  animation: bodyEntry 0.4s ease-out;
+}
+
+@keyframes bodyEntry {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.custom-success-toast {
+    --toastify-icon-color-success: red !important;
+}
+
+.custom-success-toast .Toastify__toast-icon svg {
+    fill: red !important;
+}
+
+.custom-danger-toast {
+  --toastify-icon-color-success: orange !important;
+}
+.custom-danger-toast .Toastify__toast-icon svg {
+    fill: orange !important;
+}
+
+
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+.animate-draw {
+  animation: scaleIn 0.5s ease-in-out both;
+}
+
+body::-webkit-scrollbar {
+  display: none;}
+
+
+  .hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE + Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

@@ -1,0 +1,53 @@
+/* Custom bullet styling */
+
+
+.swiper-pagination-bullet {
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  position: relative;
+  overflow: hidden;
+  margin: 0 4px !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Active bullet styling */
+.swiper-pagination-bullet-active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Progress bar inside bullet */
+.swiper-pagination-bullet .progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: white;
+  border-radius: 2px;
+   transform-origin: left center;
+  will-change: transform; 
+}
+
+/* Animation for active bullet's progress bar */
+.swiper-pagination-bullet-active .progress-bar {
+  animation: progress 3s linear forwards;
+}
+
+/* Reset progress bar for non-active bullets */
+.swiper-pagination-bullet:not(.swiper-pagination-bullet-active) .progress-bar {
+  width: 0% !important;
+  animation: none !important;
+  transition: width 0.3s ease-out;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
