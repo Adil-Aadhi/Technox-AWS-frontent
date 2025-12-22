@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://technox-e-com.duckdns.org/",
   withCredentials: true,   // ⬅️ VERY IMPORTANT (allows HttpOnly cookies)
   headers: {
     "Content-Type": "application/json",
@@ -59,7 +59,7 @@ api.interceptors.response.use(
         );
 
         const newAccess = res.data.access;
-
+        console.log(newAccess)
         // Save new access token
         localStorage.setItem("access", newAccess);
 

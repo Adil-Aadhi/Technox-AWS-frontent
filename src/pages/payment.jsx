@@ -44,6 +44,8 @@ function Payment() {
 
   const [isDetails,setIsDetails]=useState(false)
 
+  const [loading,setLoading]=useState(false)
+
  
   
 
@@ -120,6 +122,7 @@ const HandleSubmit=(e)=>{
 
         const handleCOD = async () => {
                 try {
+                    setLoading(true)
                     const orderId = await createOrder();
                     setDeliver(true);
                     clearOrderedItemsFromCart(finalProducts);
@@ -127,9 +130,11 @@ const HandleSubmit=(e)=>{
                         navigate("/");
                         setDeliver(false);
                         toast.success("Order Placed Successfully!");
+                        setLoading(false)
                     }, 2500); 
                 }catch (e) {
                             setDeliver(false);
+                            setLoading(false)
 
                             let message = "Something went wrong";
 
@@ -154,13 +159,16 @@ const HandleSubmit=(e)=>{
 
             const handleRazorpay = async () => {
                 try {
+                    setLoading(true)
                     const orderId = await createOrder();   // ✅ create unpaid order
                     await openRazorpay(orderId);           // ✅ payment
                     clearOrderedItemsFromCart(finalProducts);
                     toast.success("Payment Successful!");
+                    setLoading(false)
                     navigate("/");
                 } catch {
                     toast.error("Payment failed or cancelled",{style: {color: "black",background: "#fff",}});
+                    setLoading(false)
                 }
             };
 
@@ -179,11 +187,23 @@ const HandleSubmit=(e)=>{
   },[])
 
 
+
     return (
         <div className="bg-gradient-to-br from-blue-50 to-teal-50 min-h-screen p-6">
 
         {/* gpt  */}
-
+            {loading &&  (
+                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                    <div className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg p-8 flex flex-col items-center">
+                        <div className="relative w-20 h-20 mb-4">
+                            <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-white/50 animate-spin"></div>
+                            <div className="absolute inset-2 rounded-full border-4 border-b-transparent border-white/30 animate-spin animation-delay-200"></div>
+                            <div className="absolute inset-4 rounded-full border-4 border-l-transparent border-white/10 animate-spin animation-delay-400"></div>
+                        </div>
+                        <p className="text-white text-md font-medium">Loading...</p>
+                    </div>
+                </div>
+            )}
             {deliver && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                           <div className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg p-8 flex flex-col items-center">

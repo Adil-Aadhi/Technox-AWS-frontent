@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { NavLink, useLocation } from "react-router-dom";
+import api from '../../../axiosConfig.js'
 
 function AdminSidebar() {
   const [activeItem, setActiveItem] = useState('');
@@ -54,6 +55,20 @@ function AdminSidebar() {
     // { id: 'settings', label: 'Settings', icon: <FiSettings size="20" />,path:"settings" },
   ];
 
+  const HandleLogout=async()=>{
+    try{
+      const res=await api.post('/api/logout/')
+      localStorage.removeItem('user');
+      localStorage.removeItem('access');
+      toast.info("Log-out successfully")
+      navigate('/login')
+
+    }
+    catch(e){
+      console.log("error",e)
+      toast.warning("Log-out Fail")
+    }
+  }
   return (
     <>
       <button 
@@ -136,11 +151,7 @@ function AdminSidebar() {
               <p className="text-white">Are you sure you want to logout?</p>
               <div className="flex justify-between gap-4 mt-4">
                 <button className="px-4 py-2 bg-red-600 text-white rounded-lg cursor-pointer hover:scale-102 transition-all duration-200 ease-in-out" onClick={()=>
-                  {
-                      localStorage.removeItem('currentUser');
-                      toast.info("Log-out successfully")
-                      navigate('/login')
-                    }
+                  HandleLogout()
                 } >Yes</button>
                 <button className="px-4 py-2 bg-gray-400 rounded-lg cursor-pointer hover:scale-102 transition-all duration-200 ease-in-out" onClick={()=>setShowConfirm(false)} >No</button>
               </div>
