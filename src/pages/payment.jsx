@@ -74,20 +74,40 @@ function Payment() {
   return address.house_no && address.town && address.district && address.post && address.mobile;
 }
 
-const HandleSubmit=(e)=>{
-        e.preventDefault();
-        const data = { ...address };
-        delete data.user;
+// const HandleSubmit=(e)=>{
+//         e.preventDefault();
+//         const data = { ...address };
+//         delete data.user;
 
 
-        api.patch(`/api/user/address/`,data)
-        .then((res)=>{toast.success("Address is updated");
-             setIsDetails(false);
-    })
-        .catch((e)=>{console.log("error",e);
-            toast.error("Error saving address")})
+//         api.patch(`/api/user/address/`,data)
+//         .then((res)=>{toast.success("Address is updated");
+//              setIsDetails(false);
+//     })
+//         .catch((e)=>{console.log("error",e);
+//             toast.error("Error saving address")})
+//     }
+const HandleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = { ...address };
+    delete data.user;
+
+    try {
+        await api.patch(`/api/user/address/`, data);
+
+        // 🔥 IMPORTANT: refetch address to get id
+        const res = await api.get(`/api/user/address/`);
+        setAddress(res.data);
+        setAddressId(res.data.id);
+
+        toast.success("Address updated");
+        setIsDetails(false);
+    } catch (e) {
+        console.log(e);
+        toast.error("Error saving address");
     }
-
+};
 
 
 
