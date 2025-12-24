@@ -4,7 +4,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import api from "../../axiosConfig";
-import Spinner from "./SPinnerComponents";
+import Spinner from "./SpinnerComponents";
 
 
 
