@@ -17,7 +17,7 @@ function Order(){
     const navigate=useNavigate()
 
     const HandleOrders=async()=>{
-
+        setLoading(true)
         try{
             const res=await api.get(`/api/order/`)
             setProduct(res.data || [])

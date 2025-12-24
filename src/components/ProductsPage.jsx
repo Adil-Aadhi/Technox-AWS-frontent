@@ -62,6 +62,7 @@ function Products(){
     }
 
     const fetchProducts = async (page=1) => {
+        setLoading(true)
         try {
             const query = {page};
 

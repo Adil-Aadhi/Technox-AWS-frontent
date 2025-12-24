@@ -24,6 +24,7 @@ function HomeProducts(){
     const navigate=useNavigate();
 
     const HandleProducts= async ()=>{
+        setLoading(true)
         try{
             const res= await api.get('/api/products/home/')
             setProducts(res.data)
