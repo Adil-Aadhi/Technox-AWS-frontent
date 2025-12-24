@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSearchParams } from "react-router-dom";
 import { CartContext } from './useContext/cartwishContext';
 import api from "../../axiosConfig";
+import ProductSkeleton from "./ProductPageSkeleton";
 
 
 
@@ -30,7 +31,7 @@ function Products(){
     const [selectedType, setSelectedType] = useState(null);
      const [selectedProduct,setSelectedProduct]=useState(null)
     const [isModelOpen,setIsModelOpen] = useState(false);
-
+    const [loading, setLoading] = useState(true);
 
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
@@ -74,9 +75,11 @@ function Products(){
             setTotal(res.data.count);
             setNextPage(res.data.next);
             setPrevPage(res.data.previous);
+            setTimeout(() => setLoading(false), 600);
 
         } catch (error) {
             console.log("Filter error", error);
+            setLoading(false)
         }
     };
 
@@ -121,7 +124,12 @@ useEffect(() => {
                 <div className="container mx-auto mt-15 px-4 py-12 transition-all duration-300">
                     <h3 className="text-2xl font-bold text-white tracking-tight leading-snug">PRODUCTS</h3>
                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 mt-10">
-                        {filteredProducts.length >0 ?(
+                        {loading ?(
+                            [...Array(10)].map((_, i) => (
+                            <ProductSkeleton key={i} />
+                            ))
+                        ):
+                        filteredProducts.length >0 ?(
                         filteredProducts.map((product)=>(
                             <div key={product.id} onClick={()=>openModal(product)}
                                  className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden

@@ -7,6 +7,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import useWishList from "./customhook/customehook";
 import useHandleCart from "./customhook/carthook";
 import api from "../../axiosConfig";
+import ProductSkeleton from "./ProductPageSkeleton";
 
 
 
@@ -15,7 +16,7 @@ function HomeProducts(){
     const {wishlist,ToggleWishList}=useWishList()
     const {cartList,ToggleCart,DeleteCart,HandleCarts}=useHandleCart()
 
-
+    const [loading, setLoading] = useState(true);
     const [products,setProducts]=useState([]);
     const [selectedProduct,setSelectedProduct]=useState(null)
     const [isModelOpen,setIsModelOpen] = useState(false);
@@ -26,9 +27,11 @@ function HomeProducts(){
         try{
             const res= await api.get('/api/products/home/')
             setProducts(res.data)
+            setTimeout(() => setLoading(false), 600);
         }
         catch(error){
             console.log("Error on fecthing product:",error);
+            setLoading(false);
         }
     }
 
@@ -62,7 +65,12 @@ function HomeProducts(){
                 <h2 className="text-3xl font-bold text-white mb-4">Featured Products</h2>
             </div>
              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 mt-9">
-                    {products.map((product)=>(
+                    {loading ? (
+                         [...Array(10)].map((_, i) => (
+                            <ProductSkeleton key={i} />
+                            ))
+                    ):
+                    products.map((product)=>(
                         <div key={product.id} onClick={()=>openModal(product)}
                          className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden
                                                             shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">

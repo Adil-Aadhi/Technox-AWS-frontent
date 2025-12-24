@@ -4,6 +4,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import api from "../../axiosConfig";
+import Spinner from "./SPinnerComponents";
 
 
 
@@ -11,6 +12,7 @@ function Order(){
 
     const [product,setProduct]=useState([])
     const [deleteOrder,setDeleteOrder]=useState(null)
+    const [Loading,setLoading]=useState(true)
 
     const navigate=useNavigate()
 
@@ -20,9 +22,11 @@ function Order(){
             const res=await api.get(`/api/order/`)
             setProduct(res.data || [])
             console.log(typeof res.data)
+            setLoading(false)
         }
         catch(e){
             console.log("error on fetching orders",e);
+            setLoading(false)
         }
         
     }
@@ -80,7 +84,10 @@ const CancelOrders=async(orderid)=>{
                 <div className="backdrop-blur-xl bg-white/3  rounded-2xl border border-white/20 shadow-2xl p-5">
                     <h1 className="text-4xl font-bold text-white text-center">ORDERS</h1>
                 </div>
-                {product.length > 0  ?(
+                {Loading ? (
+                    <Spinner/>
+                ):
+                product.length > 0  ?(
                     <div>
                     {product
                             .slice()
