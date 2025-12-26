@@ -260,15 +260,24 @@ function Profile(){
                              <div className="space-y-6">
                                 <div className="backdrop-blur-md bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg">
                                 {isLoggedIn && (
-                                    <div className="relative">
+                                    <div className="flex justify-end [390px]:relative md:relative">
                                         <button
-                                            className="absolute top-0 right-0 bg-orange-500 text-white px-3 py-2 rounded-lg 
-                                                    shadow hover:bg-orange-600 active:scale-95 transition cursor-pointer"
-                                            onClick={()=>setPassModal(true)}>
-                                            Change Password
+                                        className="
+                                            bg-orange-500 text-white
+                                            px-2 py-1 text-xs
+                                            md:px-3 md:py-2 md:text-sm
+                                            rounded-lg shadow
+                                            hover:bg-orange-600 active:scale-95 transition cursor-pointer
+
+                                            [390px]:absolute [390px]:top-0 [390px]:right-0
+                                        "
+                                        onClick={() => setPassModal(true)}
+                                        >
+                                        Change Password
                                         </button>
                                     </div>
-                                )}
+                                    )}
+
                                     <div className="space-y-4">
                                         <div className="flex items-center">
                                            <span className="text-white/80 font-medium"> Name:</span> 
@@ -283,7 +292,15 @@ function Profile(){
                                             <span className="text-white ms-2 break-words max-w-[200px] sm:max-w-none truncate">{displayData.email}</span>
                                         </div>
                                         <button
-                                            className="cursor-pointer bg-green-500  p-2 rounded-2xl ml-3 w-50 text-white hover:bg-green-600"
+                                                className="
+                                                cursor-pointer bg-green-500 
+                                                p-1 text-xs w-32          /* mobile size */
+                                                rounded-2xl ml-2 
+                                                text-white hover:bg-green-600
+
+                                                sm:p-2 sm:text-sm sm:w-40 /* small tablets and up */
+                                                md:w-50                   /* desktop stays same */
+                                                "
                                             onClick={() => {
                                                 if (!isLoggedIn) {
                                                 toast.error("Please Login");
@@ -300,7 +317,7 @@ function Profile(){
                                         <div className="bg-white/10 me-3 text-white/70 rounded-md p-3  text-sm ">
                                             
                                                 
-                                                <div className="grid grid-cols-2 gap-2">
+                                                <div className="grid grid-cols-2 max-[429px]:grid-cols-1 gap-2">
                                                     <div  className="flex flex-col">
                                                         <span  className="font-medium text-white/80">House No:</span>
                                                          <span className="text-white/50">{address.house_no || "Not provided"}</span>

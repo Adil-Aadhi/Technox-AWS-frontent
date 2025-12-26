@@ -14,7 +14,6 @@ import HomeProducts from "./homeproducts";
 
 function Home() {
 
-    
     const navigate=useNavigate();
 
     const ShopNavigate=()=>{

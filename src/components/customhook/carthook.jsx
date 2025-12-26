@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartContext } from "../useContext/cartwishContext";
 import api from "../../../axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 function useHandleCart(){
 
     const [cartList,setCartList]=useState([])
     const [loading, setLoading] = useState(false);
     const [cartLoading, setCartLoading] = useState(true);
-
     let {cartLength,setCartLength}=useContext(CartContext);
 
       const userData = JSON.parse(localStorage.getItem("user"));
@@ -27,7 +27,7 @@ function useHandleCart(){
 
             if(exist){
             toast.info(`${product.name} Already in the Cart`,{
-                    className: 'custom-danger-toast'
+                    className: 'custom-danger-toast',
                 })
             return;
             }

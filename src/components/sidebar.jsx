@@ -110,7 +110,7 @@ function Sidebar({onFilter,onBrand}) {
                   <li>
                     <button
                       onClick={() => { onFilter(null);setMobileFilter(null); setIsOpen(false); }}
-                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/20 transition-all duration-200"
+                      className="w-full text-left px-3 py-2 rounded-lg  text-white/80 transition-all duration-200"
                     >
                       All Products {mobileFilter === null && " ✔️"}
                     </button>
@@ -118,7 +118,7 @@ function Sidebar({onFilter,onBrand}) {
                   <li>
                     <button
                       onClick={() => { onFilter("Laptop");setMobileFilter("Laptop");  setIsOpen(false); }}
-                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/20 transition-all duration-200"
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-black/20 text-white/80  transition-all duration-200"
                     >
                       Laptops {mobileFilter === "Laptop" &&  " ✔️"}
                     </button>
@@ -126,7 +126,7 @@ function Sidebar({onFilter,onBrand}) {
                   <li>
                     <button
                       onClick={() => { onFilter("Mobile");setMobileFilter("Mobile");  setIsOpen(false); }}
-                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/20 transition-all duration-200"
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-black/20 text-white/80  transition-all duration-200"
                     >
                       Mobiles {mobileFilter === "Mobile" &&  " ✔️"}
                     </button>
@@ -137,46 +137,46 @@ function Sidebar({onFilter,onBrand}) {
                 <h2 className="text-lg font-bold mb-3"></h2>
                 <ul className="space-y-2">
                   <li>
-                    <button onClick={() => { onBrand(null); setMobilebrand(null) ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand(null); setMobilebrand(null) ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80">
                         All Brands {mobileBrand === null && " ✔️"}
                     </button>
                   </li>
                   <li>
-                    <button  onClick={() => { onBrand("Apple");setMobilebrand("Apple") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button  onClick={() => { onBrand("Apple");setMobilebrand("Apple") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80">
                         Apple {mobileBrand === "Apple" && " ✔️"}
                     </button>
                   </li>
                   <li>
-                    <button  onClick={() => { onBrand("Google");setMobilebrand("Google") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button  onClick={() => { onBrand("Google");setMobilebrand("Google") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80 ">
                         Google {mobileBrand === "Google" && " ✔️"}
                     </button>
                   </li>
                   <li>
-                    <button  onClick={() => { onBrand("OnePlus");setMobilebrand("OnePlus") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button  onClick={() => { onBrand("OnePlus");setMobilebrand("OnePlus") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80 ">
                         OnePlus {mobileBrand === "OnePlus" && " ✔️"}
                     </button>
                   </li>
                   <li>
-                    <button onClick={() => { onBrand("Samsung");setMobilebrand("Samsung") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand("Samsung");setMobilebrand("Samsung") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80 ">
                         Samsung {mobileBrand === "Samsung" && " ✔️"}
                     </button>
                   </li>
                   <li>
-                    <button onClick={() => { onBrand("Xiaomi");setMobilebrand("Xiaomi") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand("Xiaomi");setMobilebrand("Xiaomi") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80 ">
                         Xiaomi {mobileBrand === "Xiaomi" && " ✔️"}
                     </button>
                   </li>
                   <li>
-                    <button onClick={() => { onBrand("Asus");setMobilebrand("Asus") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand("Asus");setMobilebrand("Asus") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-black/20 text-white/80 ">
                       Asus {mobileBrand === "Asus" && " ✔️"}
                     </button>
-                    <button onClick={() => { onBrand("Dell");setMobilebrand("Dell") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand("Dell");setMobilebrand("Dell") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20 text-white/80 ">
                       Dell {mobileBrand === "Dell" && " ✔️"}
                     </button>
-                    <button onClick={() => { onBrand("HP");setMobilebrand("HP") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand("HP");setMobilebrand("HP") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20 text-white/80 ">
                       HP {mobileBrand === "HP" && " ✔️"}
                     </button>
-                    <button onClick={() => { onBrand("Lenovo");setMobilebrand("Lenovo") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20">
+                    <button onClick={() => { onBrand("Lenovo");setMobilebrand("Lenovo") ; setIsOpen(false); }} className="w-full text-left px-3 py-2 rounded hover:bg-white/20 text-white/80 ">
                       Lenovo {mobileBrand === "Lenovo" && " ✔️"}
                     </button>
                   </li>
