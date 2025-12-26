@@ -45,7 +45,6 @@ function useWishList(){
         }
         catch(e){
             console.log("error update",e)
-             toast.error(`Failed to update wishlist: ${e.message}`);
         }
     }
 
