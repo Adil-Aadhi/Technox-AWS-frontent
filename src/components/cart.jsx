@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import useHandleCart from "./customhook/carthook"
-import { FiMinus,FiPlus,FiTrash2,FiShoppingCart  } from "react-icons/fi";
+import { FiMinus,FiPlus,FiTrash2,FiShoppingCart,FiArrowLeft   } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -24,41 +24,54 @@ function Cart(){
 
     const grandTotal=TotalAmount - discount;
 
-     if (loading) return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                    <div className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg p-8 flex flex-col items-center">
-                        <div className="relative w-20 h-20 mb-4">
-                            <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-white/50 animate-spin"></div>
-                            <div className="absolute inset-2 rounded-full border-4 border-b-transparent border-white/30 animate-spin animation-delay-200"></div>
-                            <div className="absolute inset-4 rounded-full border-4 border-l-transparent border-white/10 animate-spin animation-delay-400"></div>
-                        </div>
-                        <p className="text-white text-md font-medium">Loading...</p>
-                    </div>
+     if (loading) {
+        return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-50 to-white/80 backdrop-blur-sm">
+                <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 border-3 border-orange-500/30 border-t-orange-600 rounded-full animate-spin"></div>
                 </div>
+            </div>
+        );
+    }
 
 
     return(
-        <div className="min-h-screen mt-15 py-12 px-4 sm:px-6 lg:px-8"
-            style={{background: "linear-gradient(135deg, rgba(20, 30, 48, 0.9), rgba(36, 59, 85, 0.9))"}}>
-                {loading && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                            <div className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg p-8 flex flex-col items-center">
-                                <div className="relative w-20 h-20 mb-4">
-                                    <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-white/50 animate-spin"></div>
-                                    <div className="absolute inset-2 rounded-full border-4 border-b-transparent border-white/30 animate-spin animation-delay-200"></div>
-                                    <div className="absolute inset-4 rounded-full border-4 border-l-transparent border-white/10 animate-spin animation-delay-400"></div>
-                                </div>
-                                <p className="text-white text-md font-medium">Loading...</p>
+        <div className="min-h-screen mt-15 py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-500 to-white/80 backdrop-blur-sm">
+                    <div className="max-w-7xl mx-auto mb-6">
+                        <div className="bg-white/70 backdrop-blur-lg rounded-2xl border border-gray-200/60 shadow-md p-6">
+                            
+                            <div className="flex items-center justify-between">
+                            
+                            <div className="flex items-center gap-3">
+                                <button 
+                                onClick={() => navigate(-1)}
+                                className="flex items-center text-sm text-gray-600 hover:text-orange-600 transition-colors group"
+                                >
+                                <FiArrowLeft className="mr-2 transition-transform group-hover:-translate-x-1 cursor-pointer" />
+                                Back to Shop
+                                </button>
+                            </div>
+
+                            <div className="flex items-center gap-3">
+                                <h1 className="text-3xl font-bold text-gray-900">
+                                Your Cart
+                                </h1>
+                                <FiShoppingCart className="text-2xl text-orange-500" />
+                            </div>
+
+                            {cartList?.length > 0 && (
+                                <button
+                                onClick={() => navigate('/products')}
+                                className="text-sm font-medium text-orange-600 hover:text-orange-700 cursor-pointer"
+                                >
+                                Continue Shopping →
+                                </button>
+                            )}
+
                             </div>
                         </div>
-                    )}
-                    <div className="max-w-7xl mx-auto mb-6">
-                        <div className="bg-[rgba(255,255,255,0.56)] backdrop-blur-lg rounded-2xl border border-white/20 p-8 shadow-xl">
-                        <div className="flex items-center justify-center gap-3">
-                            <h1 className="text-4xl font-bold text-dark text-center">Your Cart</h1>
-                            <FiShoppingCart className="text-3xl fill-orange-500"/>
                         </div>
-                        </div>
-                    </div>
+
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div className="lg:col-span-2 bg-[rgba(255,255,255,0.56)] backdrop-blur-lg rounded-2xl border border-white/20 overflow-hidden shadow-xl">
                             <div className="border-b border-white/20 p-6">
@@ -85,12 +98,12 @@ function Cart(){
                                             <div className="flex items-center absolute bottom-0 sm:bottom-7 mb- sm:mb-4 gap-1 top-25 left-1">
                                                 <button  className="bg-black/80 hover:bg-black text-white w-10 h-6 sm:w-14 sm:h-7 rounded-full flex items-center justify-center transition-colors"
                                                             onClick={()=>DecrementQuantity(product.product.id)}>
-                                                    <FiMinus className="w-3 h-3 sm:w-3.5 sm:h-3.5" size={14}/>
+                                                    <FiMinus className="w-3 h-3 sm:w-3.5 sm:h-3.5 cursor-pointer" size={14}/>
                                                 </button>
                                                 <span className="text-xs sm:text-sm mx-1">{product.quantity}</span>
                                                 <button  className="bg-black/80 hover:bg-black text-white w-10 h-6 sm:w-14 sm:h-7 rounded-full flex items-center justify-center transition-colors"
                                                             onClick={()=>IncrementQuantity(product.product.id)}>
-                                                    <FiPlus className="w- h-3 sm:w-3.5 sm:h-3.5" size={14}/>
+                                                    <FiPlus className="w- h-3 sm:w-3.5 sm:h-3.5 cursor-pointer" size={14}/>
                                                 </button>
                                             </div>
                                         </div>
@@ -100,7 +113,7 @@ function Cart(){
                                                         <h3 className="text-sm text-gray-600">Total Price</h3>
                                                         <h2 className="text-sm sm:text-lg font-semibold ">₹{product.product.price*product.quantity}</h2>
                                                     </div>
-                                                <button className="text-red-400 hover:text-red-500 transition-colors absolute bottom-2 right-4"
+                                                <button className="text-red-400 hover:text-red-500 transition-colors absolute bottom-2 right-4 cursor-pointer"
                                                                 onClick={()=>DeleteCart(product)}>
                                                         <FiTrash2 size={20}/>
                                                     </button>

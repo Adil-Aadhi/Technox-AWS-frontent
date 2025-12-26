@@ -166,7 +166,9 @@ function Profile(){
                 </div>
 
     return (
-        <div className="bg-gradient-to-br from-black via-gray-900 to-neutral-900 min-h-screen p-4">
+        <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black
+ min-h-screen p-4">
+    <div className="absolute inset-0 bg-black/40">
             <div  className="lg:hidden fixed top-6 left-6 z-50">
                 <button className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mt-15"
                         onClick={() => setMenuOpen(!menuOpen)}>
@@ -566,6 +568,7 @@ function Profile(){
 
 
 
+            </div>
             </div>
         </div>
     )

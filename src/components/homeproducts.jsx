@@ -32,7 +32,6 @@ function HomeProducts(){
         }
         catch(error){
             console.log("Error on fecthing product:",error);
-            setLoading(false);
         }
     }
 
@@ -106,7 +105,7 @@ function HomeProducts(){
 
         {selectedProduct && (
             <div className={`fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 transition-all duration-300 ${isModelOpen ? 'backdrop-blur-sm opacity-100' : 'backdrop-blur-0 opacity-0'}`} >
-                <div  className={`relative max-w-full sm:max-w-4xl w-full mx-2 sm:mx-0 bg-white/10 border border-white/20 rounded-2xl overflow-hidden backdrop-blur-lg transition-all duration-300 transform ${isModelOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+                <div  className={`relative max-w-full sm:max-w-4xl w-full mx-2 sm:mx-0 bg-black/40 border text-white border-white/20 rounded-2xl overflow-hidden backdrop-blur-lg transition-all duration-300 transform ${isModelOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
                 <button onClick={closeModal}  className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 p-1 sm:p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer">
                     <IoClose className="h-4 w-4 sm:h-5 sm:w-5 text-white hover:text-red-400" />
                 </button>
@@ -130,7 +129,7 @@ function HomeProducts(){
                          <div className="text-base sm:text-xl mb-2 sm:mb-4">
                             <BiRupee className="inline-block mr-1" />{selectedProduct.price}
                          </div>
-                          <p className="text-black text-sm sm:text-base mb-4 sm:mb-20 font-medium">{selectedProduct.description || "Product description goes here."}
+                          <p className="text-white/70 text-sm sm:text-base mb-4 sm:mb-20 font-medium">{selectedProduct.description || "Product description goes here."}
                           </p>
                           {selectedProduct.status==="active" && Number(selectedProduct.totalquantity) > 0 ?(
                             <div className="flex gap-2 sm:gap-4 justify-center">

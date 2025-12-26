@@ -35,7 +35,7 @@ function Wishlist() {
                         onClick={() => navigate(-1)}
                         className="flex items-center text-sm text-gray-600 hover:text-orange-600 transition-colors mb-3 group"
                     >
-                        <FiArrowLeft className="mr-2 transition-transform group-hover:-translate-x-1" /> 
+                        <FiArrowLeft className="mr-2 transition-transform group-hover:-translate-x-1 cursor-pointer" /> 
                         Back to Shop
                     </button>
                     <div className="flex items-center justify-between">
@@ -46,7 +46,7 @@ function Wishlist() {
                         {wishlist.length > 0 && (
                             <button 
                                 onClick={() => navigate('/products')}
-                                className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                                className="text-sm text-orange-600 hover:text-orange-700 font-medium cursor-pointer"
                             >
                                 Continue Shopping →
                             </button>
@@ -108,7 +108,7 @@ function Wishlist() {
                                                     e.stopPropagation();
                                                     navigate("/cart");
                                                 }}
-                                                className="flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md active:scale-95"
+                                                className="flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md active:scale-95 cursor-pointer"
                                             >
                                                 <FiShoppingCart size={14} />
                                                 <span>Go to Cart</span>
@@ -121,7 +121,7 @@ function Wishlist() {
                                                     e.stopPropagation();
                                                     ToggleCart(item.product);
                                                 }}
-                                                className="flex items-center gap-1.5 bg-black hover:bg-orange-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md active:scale-95"
+                                                className="flex items-center gap-1.5 bg-black hover:bg-orange-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md active:scale-95 cursor-pointer"
                                             >
                                                 <FiShoppingCart size={14} />
                                                 <span>Add to Cart</span>
